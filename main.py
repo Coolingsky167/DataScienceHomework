@@ -1,15 +1,20 @@
 import matplotlib
 import pandas
-import zipfile
 import json
-import time
+import os
 
-import requests
-
-fp = open("sample.json", "r", encoding="UTF-8")
+fp = open("test_data.json", "r", encoding="UTF-8")
 data = json.load(fp)
-index = 0
-for user in data:
-    for test in data.get(user).get("cases"):
-        index += 1
-print(index)
+
+questions = dict()
+users = data.keys()
+for user in users:
+    for question in data.get(user).get("cases"):
+        if question.get("case_id") in questions:
+            questions[question.get("case_id")][0] += question.get("final_score")
+            questions[question.get("case_id")][1] += len(question.get("upload_records"))
+            questions[question.get("case_id")][2] += 1
+        else:
+            questions[question.get("case_id")] = [question.get("final_score"), len(question.get("upload_records")), 1]
+
+print(questions)
