@@ -20,4 +20,3 @@ if __name__ == '__main__':
     fp = open("sample.json", "r", encoding="UTF-8")
     data = json.load(fp)
     download(data)
-
