@@ -46,15 +46,19 @@ def get_questions(data):
                 ]
 
     for key in questions.keys():
-        temp = questions[key]
-        questions[key] = [
-            temp[3] / temp[0],  # AC率
-            temp[4] / temp[0],  # 1A率
-            temp[1],  # 提交次数
-            temp[2] / temp[0],  # 最终得分的平均分
-            temp[5] / temp[1],  # 每次提交的平均分
-            temp[7] / temp[6]  # 平均每个人的debug成效
-        ]
+        try:
+            temp = questions[key]
+            questions[key] = [
+                temp[3] / temp[0],  # AC率
+                temp[4] / temp[0],  # 1A率
+                temp[1],  # 提交次数
+                temp[2] / temp[0],  # 最终得分的平均分
+                temp[5] / temp[1],  # 每次提交的平均分
+                temp[7] / temp[6]  # 平均每个人的debug成效
+            ]
+        except ZeroDivisionError:
+            print(key)
+            print(questions[key])
     return questions
 
 
