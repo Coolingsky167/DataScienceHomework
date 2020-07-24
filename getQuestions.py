@@ -49,8 +49,8 @@ def get_questions(data):
         try:
             temp = questions[key]
             questions[key] = [
-                temp[3] / temp[0],  # AC率
-                temp[4] / temp[0],  # 1A率
+                temp[3] / temp[0] * 100,  # AC率
+                temp[4] / temp[0] * 100,  # 1A率
                 temp[1],  # 提交次数
                 temp[2] / temp[0],  # 最终得分的平均分
                 temp[5] / temp[1],  # 每次提交的平均分
