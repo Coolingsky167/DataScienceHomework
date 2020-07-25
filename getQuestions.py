@@ -51,7 +51,7 @@ def get_questions(data):
             questions[key] = [
                 temp[3] / temp[0] * 100,  # AC率
                 temp[4] / temp[0] * 100,  # 1A率
-                temp[1],  # 提交次数
+                100/temp[1],  # 1/提交次数
                 temp[2] / temp[0],  # 最终得分的平均分
                 temp[5] / temp[1],  # 每次提交的平均分
                 temp[7] / temp[6]  # 平均每个人的debug成效
