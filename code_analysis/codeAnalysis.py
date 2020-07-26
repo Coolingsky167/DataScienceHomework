@@ -2,9 +2,6 @@ import json
 import os
 from typing import Dict, AnyStr
 import pylint
-from sklearn.cluster import KMeans
-from sklearn import metrics
-import pandas as pd
 
 
 # 得到每个学生做的每道题的代码路径
@@ -23,6 +20,7 @@ def pylint_code(code):
     for key1 in code.keys():
         for key2 in code[key1].keys():
             base_path = code[key1][key2]
+            base_path = '..\\'+base_path
             if not os.path.exists(base_path+'pylint_result.txt'):
                 print(key1+'  '+key2)
                 f = open(base_path + 'pylint_result.txt', 'w')
@@ -89,10 +87,10 @@ if __name__ == '__main__':
     data = json.load(fp)
     code = get_code_path(data)
     pylint_code(code)
-    code_features = extract_code_features(code)
-    code_features = json.dumps(code_features, indent=4)
-    with open('code_features.json', 'a', encoding='UTF-8') as f:
-        f.write(code_features)
-        f.write('\n\n\n\n\n')
+    # code_features = extract_code_features(code)
+    # code_features = json.dumps(code_features, indent=4)
+    # with open('code_features.json', 'a', encoding='UTF-8') as f:
+    #     f.write(code_features)
+    #     f.write('\n\n\n\n\n')
 
 
