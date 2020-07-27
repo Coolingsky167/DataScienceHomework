@@ -30,6 +30,7 @@ ax.scatter([x[0] for x in X_reduction], [x[1] for x in X_reduction])
 ax.grid()
 plt.show()
 
+
 temp = list()
 for x in X_reduction:
     temp.append(x[0] * pca.explained_variance_ratio_[0] + x[1] * pca.explained_variance_ratio_[1])
