@@ -17,6 +17,14 @@ keys = questions.keys()
 X = pd.DataFrame([x for x in
                   [questions.get(key) for key in keys]])
 
+pca = PCA()
+line = pca.fit(X)
+plt.plot([1, 2, 3, 4, 5, 6], np.cumsum(pca.explained_variance_ratio_))
+plt.xticks([1, 2, 3, 4, 5, 6])
+plt.xlabel("Number of Components after Dimension Reduction")
+plt.ylabel("Cumulative Explained Variance Ratio")
+plt.show()
+
 pca = PCA(n_components=0.95)
 X_reduction = pca.fit_transform(X)
 print(pca.explained_variance_ratio_)
