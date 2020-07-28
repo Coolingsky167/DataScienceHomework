@@ -39,13 +39,10 @@ plt.show()
 temp = list()
 for x in X_reduction:
     temp.append(x[0] * pca.explained_variance_ratio_[0] + x[1] * pca.explained_variance_ratio_[1])
-temp = [max(temp) - x for x in temp]
+# temp = [max(temp) - x for x in temp]
 # sqSum = 0
 # for item in temp:
 #     sqSum += item ** 2
 # temp = np.array([x / np.sqrt(sqSum) for x in temp])
 temp = [(x - min(temp)) / (max(temp) - min(temp)) * 100 for x in temp]
-for item in temp:
-    if item < 25:
-        print(questions.get(keys[temp.index(item)]))
-ans = np.column_stack((X_reduction, temp))
+ans = np.column_stack((keys, X_reduction, temp))
