@@ -18,7 +18,10 @@ def get_code_path(data):
 # 利用pylint分析代码规范程度,并输出到代码下面的pylint_result.txt文件中
 def pylint_code(code):
     for key1 in code.keys():
+        count = 0
         for key2 in code[key1].keys():
+            if count >= 100:
+                break
             base_path = code[key1][key2]
             base_path = '..\\'+base_path
             if not os.path.exists(base_path+'pylint_result.txt'):
@@ -26,6 +29,7 @@ def pylint_code(code):
                 f = open(base_path + 'pylint_result.txt', 'w')
                 pylint.epylint.py_run(base_path + 'answer.py', return_std=True, stdout=f, stderr=f)
                 f.close()
+            count += 1
             # if os.path.exists(base_path + 'pylint_result.txt'):
             #     print('      ' + key2)
             #     os.remove(base_path + 'pylint_result.txt')
@@ -36,8 +40,14 @@ def extract_code_features(code: Dict):
     for key1 in code.keys():
         pylint_scores = []
         magic_counts = []
+        count = 0
         for key2 in code[key1].keys():
             base_path = code[key1][key2]
+            base_path = '..\\' + base_path
+            if not os.path.exists(base_path+'pylint_result.txt'):
+                continue
+            print(key1+'    '+key2)
+            count += 1
             score = get_pylint_score(base_path+'pylint_result.txt')
             if score != 20:
                 pylint_scores.append(score)
@@ -46,7 +56,8 @@ def extract_code_features(code: Dict):
         code_score[key1] = [
             sum(pylint_scores) / n,
             sum(magic_counts) / n,
-            len(code[key1].keys()) - n
+            # len(code[key1].keys()) - n
+            (count - n) / count
         ]
     return code_score
 
@@ -55,13 +66,13 @@ def extract_code_features(code: Dict):
 def get_pylint_score(path: AnyStr):
     if not os.path.exists(path):
         return 20
-    pylint_result = open(path, 'r')
+    pylint_result = open(path, 'r', encoding='utf-8')
     lines = pylint_result.readlines()
     n = len(lines)
-    if n < 3:
+    if n <= 3:
         return 20
     else:
-        line = lines[-4].lstrip('Your code has been rated at ')
+        line = lines[-5].lstrip('Your code has been rated at ')
         index = line.find('/')
         if index != -1:
             return float(line[0:index])
@@ -71,7 +82,7 @@ def get_pylint_score(path: AnyStr):
 
 # 统计代码中if,elif,else,字面常量的数量
 def get_code_count(path: AnyStr):
-    cur_code = open(path, 'r')
+    cur_code = open(path, 'r', encoding='utf-8')
     count = 0
     for line in cur_code.readlines():
         count += line.count('if')*2+line.count('elif')*4+line.count('else')*4
@@ -86,11 +97,11 @@ if __name__ == '__main__':
     fp = open('../test_data_downloaded.json', 'r', encoding='UTF-8')
     data = json.load(fp)
     code = get_code_path(data)
-    pylint_code(code)
-    # code_features = extract_code_features(code)
-    # code_features = json.dumps(code_features, indent=4)
-    # with open('code_features.json', 'a', encoding='UTF-8') as f:
-    #     f.write(code_features)
-    #     f.write('\n\n\n\n\n')
+    # pylint_code(code)
+    code_features = extract_code_features(code)
+    code_features = json.dumps(code_features, indent=4)
+    with open('code_features.json', 'a', encoding='UTF-8') as f:
+        f.write(code_features)
+        f.write('\n\n\n\n\n')
 
 

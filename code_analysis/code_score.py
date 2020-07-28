@@ -1,22 +1,24 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn import metrics
+from sklearn import preprocessing
 import json
 
 
-def get_code_scores():
+def get_score():
     fp = open('code_features.json', 'r', encoding='UTF-8')
     code_features = json.load(fp)
     X = pd.DataFrame(code_features).T
-    X_pred = KMeans(n_clusters=3, n_jobs=-1).fit_predict(X)
+    # X_scaled = preprocessing.scale(X)
+    X_pred = KMeans(n_clusters=3).fit_predict(X)
+    # print(X_pred)
     score = metrics.calinski_harabasz_score(X, X_pred)
-    print(X)
-    print(X_pred)
-    keys = code_features.keys()
+    keys = list(code_features.keys())
     for i in range(len(keys)):
-        code_features[keys[i]].append(X_pred[i])
-    print(code_features)
+        code_features[keys[i]] = X_pred[i]
+    code_features = sorted(code_features.items(), key=lambda x: x[1])
+    return code_features
+    # for i in range(len(code_features)):
+    #     print(code_features[i])
 
-
-if __name__ == '__main__':
-    get_code_scores()
+print(get_score())
