@@ -11,8 +11,42 @@
 \usepackage{url}
 \usepackage{caption2}
 \usepackage{authblk}
-
+\usepackage{amsmath}
+\usepackage{bm}
 \graphicspath{{Figures/}}
+\usepackage{appendix} % 附录
+\usepackage{listings}
+\usepackage{ctex}
+\usepackage{pythonhighlight}
+
+% 用来设置附录中代码的样式
+
+\lstset{
+	basicstyle          =   \sffamily,          % 基本代码风格
+	keywordstyle        =   \bfseries,          % 关键字风格
+	commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+	stringstyle         =   \ttfamily,  % 字符串风格
+	flexiblecolumns,                % 别问为什么，加上这个
+	numbers             =   left,   % 行号的位置在左边
+	showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+	numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+	showstringspaces    =   false,
+	captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+	frame               =   lrtb,   % 显示边框
+}
+
+\lstdefinestyle{Python}{
+	language        =   Python, % 语言选Python
+	basicstyle      =   \zihao{-5}\ttfamily,
+	numberstyle     =   \zihao{-5}\ttfamily,
+	keywordstyle    =   \color{blue},
+	keywordstyle    =   [2] \color{teal},
+	stringstyle     =   \color{magenta},
+	commentstyle    =   \color{red}\ttfamily,
+	breaklines      =   true,   % 自动换行，建议不要写太长的行
+	columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+	basewidth       =   0.5em,
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%== 设置全局环境 ==%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % [geometry] 设置页边距
@@ -104,32 +138,113 @@
 		$$X_6=\frac{Score_{final}-Score_{first}}{Time_{final}-Time_{first}}$$
 	\end{enumerate}
 	\par (3)数据处理与可视化
-	\par 在决定最后保留几个维度的时候，我们首先通过不对n\_components赋值，此时默认返回min(X.shape)个特征，这样虽然没有减少特征个数，但是可以画出累计可解释方差贡献率曲线，以此选择最好的n\_components。累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们选择合适的维度。
+	\par 在决定最后保留几个维度的时候，我们首先通过不对n\_components赋值，此时默认返回min(X.shape)个特征，这样虽然没有减少特征个数，但是可以画出累计可解释方差贡献率曲线，以此选择最好的n\_components。累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们选择合适的维度。从图2-1可以看出来，选取二维或者三维的变化是不显著的。
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.35\textwidth]{Figure_2.png}\\
 		\caption{累积可解释方差贡献率曲线}
 	\end{figure}
+	\par 最终PCA降维的结果如图2-2所示。
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=0.35\textwidth]{Figure_1.png}\\
+		\caption{降维后}
+	\end{figure}
+	\par 最后我们将两个维度加权求和，再将其指标正向化，并做标准化处理，得到一个(0,1)区间的系数，我们称为难度系数。我们随机抽取几道题目，如图所示，可见其难度系数是有显著差异的。
 	\subsubsection{代码内容分析}
 	侯锐来写
 	
 	\subsubsection{优劣解距离法分析编程能力}
-	
+	\par(1)优劣解距离法
+	\par C.L.Hwang 和 K.Yoon 于1981年首次提出 TOPSIS (Technique for Order Preference by Similarity to an Ideal Solution)。TOPSIS 法是一种常用的组内综合评价方法，能充分利用原始数据的信息，其结果能精确地反映各评价方案之间的差距。基本过程为基于归一化后的原始数据矩阵，采用余弦法找出有限方案中的最优方案和最劣方案，然后分别计算各评价对象与最优方案和最劣方案间的距离，获得各评价对象与最优方案的相对接近程度，以此作为评价优劣的依据。该方法对数据分布及样本含量没有严格限制，数据计算简单易行。其步骤大致分为以下几步：
+	\begin{enumerate}
+		\item 指标属性同向化
+		\par TOPSIS 法使用距离尺度来度量样本差距，使用距离尺度就需要对指标属性进行同向化处理（若一个维度的数据越大越好，另一个维度的数据越小越好，会造成尺度混乱）。一般情况下会选择将极小型指标、中间型指标、区间型指标转化为极大型指标(数值越大评价越好)，在本次研究中，数值均为该种情况，无需转化。
+		\item 构造归一化矩阵
+		\par 假设有n个评价对象，每个对象都有m个指标，则原始数据矩阵构造为：
+		\begin{equation}
+		\bm{X} =
+		\begin{bmatrix}
+		\bm{x_{11}} & \bm{x_{12}} & \cdots & \bm{x_{1m}} \\
+		\bm{x_{21}} & \bm{x_{x_{22}}} & \cdots & \bm{x_{2m}} \\
+		\vdots & \vdots &  \ddots & \vdots \\
+		\bm{x_{n1}} & \bm{x_{n2}} & \cdots & \bm{x_{nm}}
+		\end{bmatrix},
+		\end{equation}
+		构造加权规范矩阵，属性进行向量规范化，即每一列都除以当前列向量的范数:
+		\begin{equation}
+		Z_{ij}=\frac{x_{ij}}{\sqrt{\sum_{i=1}^n x_{ij}^2}}
+		\end{equation}	
+		由此得到归一化后的标准矩阵Z：
+		\begin{equation}
+		\bm{Z} =
+		\begin{bmatrix}
+		\bm{z_{11}} & \bm{z_{12}} & \cdots & \bm{z_{1m}} \\
+		\bm{z_{21}} & \bm{x_{z_{22}}} & \cdots & \bm{z_{2m}} \\
+		\vdots & \vdots &  \ddots & \vdots \\
+		\bm{z_{n1}} & \bm{z_{n2}} & \cdots & \bm{z_{nm}}
+		\end{bmatrix},
+		\end{equation}
+		\item 确定最优方案和最劣方案 \\
+		最优方案 $\bm{Z^{+}}$由$\bm{Z}$中每列的最大值组成:
+		\begin{equation}
+		\bm{Z^{+}}=(\bm{max}\{z_{11},z_{21},\cdots,z_{n1}\},\bm{max}\{z_{12},z_{22},\cdots,z_{n2}\},\cdots,\bm{max}\{z_{1m},z_{2m},\cdots,z_{nm}\})
+		=(Z_1^{+},Z_2^{+},\cdots,Z_m^{+})
+		\end{equation}\\
+		最劣方案 $\bm{Z^{-}}$由$\bm{Z}$中每列的最小值组成:
+		\begin{equation}
+		\bm{Z^{-}}=(\bm{min}\{z_{11},z_{21},\cdots,z_{n1}\},\bm{min}\{z_{12},z_{22},\cdots,z_{n2}\},\cdots,\bm{min}\{z_{1m},z_{2m},\cdots,z_{nm}\})=(Z_1^{-},Z_2^{-},\cdots,Z_m^{-})
+		\end{equation}
+		\item 计算各评价对象与最优方案和最劣方案的接近程度
+		\begin{equation}
+		\bm{D_i^{+}}=\sqrt{\sum_{j=1}^m {w_j(\bm{Z_j^{+}-z_{ij})^2}}}
+		\end{equation}
+		\begin{equation}
+		\bm{D_i^{-}}=\sqrt{\sum_{j=1}^m {w_j(\bm{Z_j^{-}-z_{ij})^2}}}
+		\end{equation}
+		其中$w_j$是第$j$个属性的权重，本次研究采用人为确定的方法。
+		\item 计算最终各个评价对象和最优方案的接近程度
+		\begin{equation}
+		\bm{C_i}=\frac{\bm{D_i^{-}}}{\bm{D_i^{-}}+\bm{D_i^{+}}}
+		\end{equation}
+		$0 \leq C_i \leq 1$,$C_i \rightarrow 1$ 表示评价对象越优秀
+	\end{enumerate}
+	\par 数据可视化
 	\section{代码介绍}\label{sec3}
 	\subsection{开源地址}
-	
+	\href{https://github.com/Coolingsky167/DataScienceHomework}{开源地址}
 	\subsection{实现逻辑}
-	\label{sec3:subsec2}
-
+	
+	
 	
 	\section{案例分析}\label{sec4}
 	
 	
 	\section{意见和建议}\label{sec5}
-
+	
 	
 	%===================================== 参考文献  ==========================================
 	\section{参考文献}\label{sec:sec4}
-
+	
+	\begin{appendices} 
+		\section{附录1} 
+		\lstinputlisting[
+		style       =   Python,
+		caption     =   {\bf 主函数},
+		label       =   {main.py}
+		]{../../main.py}
+		\section{附录2} 
+		\lstinputlisting[
+		style       =   Python,
+		caption     =   {\bf TOPSIS},
+		label       =   {TOPSIS.py}
+		]{../../TOPSIS.py}
+		\section{附录3} 
+		\lstinputlisting[
+		style       =   Python,
+		caption     =   {\bf 获取数据},
+		label       =   {main.py}
+		]{../../main.py}
+	\end{appendices}
 	
 \end{document}
