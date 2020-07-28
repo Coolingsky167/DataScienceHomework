@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.26)  28 JUL 2020 21:15
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.26)  29 JUL 2020 00:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -808,10 +808,14 @@ Package fontspec Info: Font family 'SimHei(0)' created for font 'SimHei' with
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.53937> not available
 (Font)              size <10.95> substituted on input line 116.
 
+File: Figures/Figure_0.png Graphic file (type bmp)
+<Figures/Figure_0.png>
+File: Figures/Figure_3.png Graphic file (type bmp)
+<Figures/Figure_3.png>
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <10.53937> not avail
 able
 (Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
-136.
+146.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 12.64723pt.
@@ -822,14 +826,14 @@ This may cause the page layout to be inconsistent, however.
 File: Figures/Figure_2.png Graphic file (type bmp)
 <Figures/Figure_2.png>
 
-Overfull \hbox (8.7947pt too wide) in paragraph at lines 141--147
+Overfull \hbox (8.7947pt too wide) in paragraph at lines 146--152
 []\TU/SimSun(0)/m/n/10.53937 在 决 定 最 后 保 留 几 个 维 度 的 时 候，|  我 们 首 先 通 过 不 对 \TU
 /lmr/m/n/10.53937 n_components \TU/SimSun(0)/m/n/10.53937 赋 值，|  此 时 默 认 返 回 \T
 U/lmr/m/n/10.53937 min(X.shape)
  []
 
 
-Overfull \hbox (33.65605pt too wide) in paragraph at lines 141--147
+Overfull \hbox (33.65605pt too wide) in paragraph at lines 146--152
 \TU/SimSun(0)/m/n/10.53937 个 特 征，|  这 样 虽 然 没 有 减 少 特 征 个 数，|  但 是 可 以 画 出 累 计 
 可 解 释 方 差 贡 献 率 曲 线，|  以 此 选 择 最 好 的 \TU/lmr/m/n/10.53937 n_components\TU/SimSu
 n(0)/m/n/10.53937 。|
@@ -837,8 +841,8 @@ n(0)/m/n/10.53937 。|
 
 File: Figures/Figure_1.png Graphic file (type bmp)
 <Figures/Figure_1.png>
-[3] [4]
-Overfull \hbox (41.96097pt too wide) detected at line 209
+[3] [4] [5]
+Overfull \hbox (41.96097pt too wide) detected at line 214
 []\OML/cmm/b/it/10.53937 Z[] \OT1/cmr/m/n/10.53937 = (\OML/cmm/b/it/10.53937 ma
 x\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/
 n/10.53937 g\OML/cmm/m/it/10.53937 ; \OML/cmm/b/it/10.53937 max\OMS/cmsy/m/n/10
@@ -849,7 +853,7 @@ L/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/n/10.53937 g\OT1/cmr/m/n/10.
  []
 
 
-Overfull \hbox (36.73285pt too wide) detected at line 213
+Overfull \hbox (36.73285pt too wide) detected at line 218
 []\OML/cmm/b/it/10.53937 Z[] \OT1/cmr/m/n/10.53937 = (\OML/cmm/b/it/10.53937 mi
 n\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/
 n/10.53937 g\OML/cmm/m/it/10.53937 ; \OML/cmm/b/it/10.53937 min\OMS/cmsy/m/n/10
@@ -859,16 +863,14 @@ L/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/n/10.53937 g\OT1/cmr/m/n/10.
 53937 ) = (\OML/cmm/m/it/10.53937 Z[]; Z[]; []  ; Z[]\OT1/cmr/m/n/10.53937 )
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
-
- []
-
-[6] (d:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+[6]
+File: Figures/Figure_4.png Graphic file (type bmp)
+<Figures/Figure_4.png>
+ [7] (d:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 257.
+nput line 287.
 
 Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
 (fontspec)             doesn't exist).
@@ -892,30 +894,32 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
- (../../main.py [7]) (../../TOPSIS.py [8]) (../../getQuestions.py [9] [10])
-(../../getQuestions.py [11])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 278.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 278.
+
+(../../main.py [8] [9] [10]) (../../TOPSIS.py [11]) (../../getQuestions.py
+[12] [13]) (../../download/Download.py [14] [15]) (../../RadarChart.py)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 315.
+
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
  (./template_Report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 278.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 278.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 315.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 315.
 Package rerunfilecheck Info: File `template_Report.out' has not changed.
-(rerunfilecheck)             Checksum: C67448FFC0E99FC3C3337760DFDBF995;1793.
+(rerunfilecheck)             Checksum: D70C1CBFA6B370FF7B29FA6DC5256852;1861.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 278.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 315.
  ) 
 Here is how much of TeX's memory you used:
- 19174 strings out of 479418
- 388761 string characters out of 5888105
- 1050178 words of memory out of 5000000
- 36341 multiletter control sequences out of 15000+600000
+ 19319 strings out of 479418
+ 392790 string characters out of 5888105
+ 1080654 words of memory out of 5000000
+ 36478 multiletter control sequences out of 15000+600000
  545763 words of font info for 116 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  56i,12n,68p,829b,2110s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on template_Report.pdf (12 pages).
+Output written on template_Report.pdf (16 pages).

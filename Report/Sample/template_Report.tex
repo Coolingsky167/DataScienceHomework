@@ -79,7 +79,7 @@
 % \heiti \kaishu 为字体设置，ctex 会自动根据操作系统加载字体
 \title{\huge \CJKfamily{zhhei}基于慕测数据分析学生编程能力}	
 \author{侯锐\textsuperscript{1} \quad 吴耀恩\textsuperscript{2} \quad 徐宇轩\textsuperscript{3}}
-\affil{\small (\textsuperscript{1}{南京大学软件学院~软件工程~181250xxx}) \\ (\textsuperscript{2}{南京大学软件学院~软件工程~181250xxx}) \\ (\textsuperscript{2}{南京大学软件学院~软件工程~181250xxx})  }	
+\affil{\small (\textsuperscript{1}{南京大学软件学院~软件工程~181250045}) \\ (\textsuperscript{2}{南京大学软件学院~软件工程~181250160}) \\ (\textsuperscript{3}{南京大学软件学院~软件工程~181250167})  }	
 \date{} % 去除默认日期
 %\date{\today}
 
@@ -94,10 +94,10 @@
 	\section{研究问题}\label{sec1}
 	
 	\subsection{背景}
-	随着人类社会技术的进步，编程逐渐成为信息科学一个基本知识和技能，成为一个跨专业、学科所必备的一个基本素养。很多高校现在更是把编程能力的培养作为理工科学生的必修课，随之流行起来的便是在线测评系统(OJ)。在线测评系统可以保存大量的测评数据，从中我们分析学习者的学习行为。本次研究就是基于慕测平台一次在线作业的数据，对参-+与该次作业的学生的编程能力做一次评价。
+	随着人类社会技术的进步，编程逐渐成为信息科学一个基本知识和技能，成为一个跨专业、学科所必备的一个基本素养。很多高校现在更是把编程能力的培养作为理工科学生的必修课，随之流行起来的便是在线测评系统(OJ)。在线测评系统可以保存大量的测评数据，从中我们分析学习者的学习行为。本次研究就是基于慕测平台一次在线作业的数据，对参与该次作业的学生的编程能力做一次评价。
 	
 	\subsection{详细介绍}
-	在本次研究中，一方面，我们通过主成分分析法(PCA)对数据中的题目做了分析，得到每个题目的难度系数，将难度系数与参与者对该题目的最终得分相结合，得到学生得分情况的测评；另一方面，我们通过xxxx(侯锐补充)的方法，对参与者提交的代码内容进行分析，得到学生代码书写情况的测评。考虑到不同的学生可能有不同的长处和喜好，分门别类的去评价一个学生的编程能力更加客观，我们针对每个学生，从字符串、树、图、排序等八个角度搜集学生的得分情况和代码情况，通过优劣解距离法(TOPSIS)实现对学生最终编程能力的打分。
+	在本次研究中，一方面，我们通过主成分分析法(PCA)对数据中的题目做了分析，得到每个题目的难度系数，将难度系数与参与者对该题目的最终得分相结合，得到学生得分情况的测评；另一方面，我们通过Kmeans算法等，对参与者提交的代码内容进行分析，得到学生代码书写情况的测评。考虑到不同的学生可能有不同的长处和喜好，分门别类的去评价一个学生的编程能力更加客观，我们针对每个学生，从字符串、树、图、排序等八个角度搜集学生的得分情况和代码情况，通过优劣解距离法(TOPSIS)实现对学生最终编程能力的打分。
 	\subsection{应用场景}
 	\label{sec1:subsec3}
 	通过一次线上作业，老师对每类题型学生的掌握情况做一个大致的了解，方便改进和完善教学方法和促进与学生的沟通。作为学生，在完成一次作业后可以了解到自己与同期学生的差距在哪里，知道自己的优势和短处，有利于后期的学习和提高。
@@ -105,7 +105,7 @@
 	
 	\section{研究方法}\label{sec2}
 	\subsection{数据集}
-	基于慕测平台的提交记录数据，格式是json文件，内容包括每个参与者对每道题目的提交代码、最终得分、每次提交时间、每次提交得分等多个维度数据。通过学生id检索到具体学生，使用pythn提取数据，使用numpy，pandas，sklearn等工具分析。	
+	基于慕测平台的提交记录数据，格式是json文件，内容包括每个参与者对每道题目的提交代码、最终得分、每次提交时间、每次提交得分等多个维度数据。通过学生id检索到具体学生，使用python提取数据，使用numpy，pandas，sklearn等工具分析。	
 	
 	\subsection{数据分析方法}
 	
@@ -120,31 +120,36 @@
 		\item 最后计算$Z_{m \times k}=X_{m \times n}W_{n \times k}$
 	\end{itemize}
 	\par (2)维度的选取
-	\par 根据已有的数据集，先要提取特征集。在提取特征之前，我们首先对数据集中的各个特征之间的关系进行了分析，选择出六个对编程题目难度研究最为有效的特征($X$)。
+	\par 根据已有的数据集，先要提取特征集。在提取特征之前，我们首先对数据集中的各个特征之间的关系进行了分析，选择出四个对编程题目难度研究最为有效的特征($X$)。
 	\par
 	\begin{enumerate}
 		\item $X_1$：1A率
-		\par 在寻找合适维度的过程中，我们首先考虑到的就是题目的AC数量。我们随机抽取了几道题目，发现不同的题目的AC数量有着较为明显的差异(见图x)。但是我们随即结合自身考虑到这样一种情况，：当一个同学在做练习时，最终运行出正确结果，但他对自己的解法并不满意，即通过了该题但是为了优化解题过程而去多次修改代码并提交通过，这样就提高了AC 量，使得这个特征不能那么客观地反映题目的难度类型。考虑到这个问题，我们最终选取1A率作为第一个维度，即一次通过的比率，用首次提交就通过的人数比总人数。
+		\par 在寻找合适维度的过程中，我们首先考虑到的就是题目的AC数量。我们随机抽取了几道题目，发现不同的题目的AC数量有着较为明显的差异。但是我们随即结合自身考虑到这样一种情况：当一个同学在做练习时，最终运行出正确结果，但他对自己的解法并不满意，即通过了该题但是为了优化解题过程而去多次修改代码并提交通过，这样就提高了AC 量，使得这个特征不能那么客观地反映题目的难度类型。考虑到这个问题，我们最终选取1A率作为第一个维度，即一次通过的比率，用首次提交就通过的人数比总人数。
 		\item $X_2$:AC率
-		\par 用一道题目的通过人数比上总答题人数
-		\item $X_3$:提交次数
-		\par 一道题目的答题次数能反映这道题的难度
-		\item $X_4$:最终平均分
+		\par 用一道题目的通过人数比上总答题人数，由图2-1可见，不同题目之间的AC率是有显著差异的
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[width=0.35\textwidth]{Figure_0.png}\\
+			\caption{随机抽取题目的AC率柱状图}
+		\end{figure}
+		\item $X_3$:最终平均分
 		\par 每个同学提交成绩的最高分是这个题目的最终分，那么一道题目的最终分数的平均值可以反映这道题目在学生中的大体情况
-		\item $X_5$:提交平均分
-		\par 同学的每次提交都会得到一个及时反馈，将所有提交分数的均值作为另一个维度能一定程度上反映题目的难度
-		\item $X_6$:Debug成效
-		\par 部分同学最后一次提交突然变为0然后放弃debug，所以取最终得分而不是最后一次得分,另外也要假定同学做一道题途中不因该题过难而跳过去做另一道题然后过很久再倒回来的情况相对少见，而因题目过难而先跳过去的情况下时间会很长，因而也能反映题目难度。记一位同学最终得分$Score_{final}$,初次提交得分$Score_{first}$,最终提交时间$Time_{final}$,初次提交时间$Time_{first}$,那么
-		$$X_6=\frac{Score_{final}-Score_{first}}{Time_{final}-Time_{first}}$$
+		\item $X_4$:提交平均分
+		\par 同学的每次提交都会得到一个及时反馈，将所有提交分数的均值作为另一个维度能一定程度上反映题目的难度，并且由图2-2所示与$X_3$是不同的。
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[width=0.35\textwidth]{Figure_3.png}\\
+			\caption{随机抽取题目的AC率柱状图}
+		\end{figure}
 	\end{enumerate}
 	\par (3)数据处理与可视化
-	\par 在决定最后保留几个维度的时候，我们首先通过不对n\_components赋值，此时默认返回min(X.shape)个特征，这样虽然没有减少特征个数，但是可以画出累计可解释方差贡献率曲线，以此选择最好的n\_components。累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们选择合适的维度。从图2-1可以看出来，选取二维或者三维的变化是不显著的。
+	\par 在决定最后保留几个维度的时候，我们首先通过不对n\_components赋值，此时默认返回min(X.shape)个特征，这样虽然没有减少特征个数，但是可以画出累计可解释方差贡献率曲线，以此选择最好的n\_components。累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们选择合适的维度。从图2-3可以看出来，选取二维或者三维的变化是不显著的。
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.35\textwidth]{Figure_2.png}\\
 		\caption{累积可解释方差贡献率曲线}
 	\end{figure}
-	\par 最终PCA降维的结果如图2-2所示。
+	\par 最终PCA降维的结果如图2-4所示。
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.35\textwidth]{Figure_1.png}\\
@@ -228,17 +233,42 @@
 	\par (3)数据可视化
 	\section{代码介绍}\label{sec3}
 	\subsection{开源地址}
-	\href{https://github.com/Coolingsky167/DataScienceHomework}{开源地址}
+	我们通过Github管理代码，这是我们的仓库链接——\href{https://github.com/Coolingsky167/DataScienceHomework}{开源地址}\\
+	此外可在附录中，查看本次报告的详细代码。
 	\subsection{实现逻辑}
-	
+	\begin{enumerate}
+		\item code\_score.py
+		\par 采用KMeans算法进行聚类分析，将具有相似代码特征的学生分为一类，多次执行该方法直到获取到一种合理度较高的分类并将结果写入code\_scores.json文件中
+		\item codeAnalysis.py
+		\par 获取每个学生的3个代码特征的值:平均代码规范得分，平均if-elif-else字面常量出现的次数，提交的代码中非python代码所占的比例
+		\item Download.py
+		\par 将下载下来的文件放在root目录下,同时修改各个代码的url为本地资源（下载下来保存的位置）,并将修改后的数据写入对应的\_downloaded.json文件
+		\item download\_name\_filter.py
+		\par 对解压缩出来的文件名进行处理,去掉其中的' ',方便后续pylint处理(pylint不能处理路径中带有空格的py文件)
+		\item getQuestions.py
+		\par 获取分析题目难度所需要的四个维度
+		\item RedarChart.py
+		\par 利用matplotlib绘制最后评价一个学生能力所需的雷达图
+		\item TOPSIS.py
+		\par 利用优劣解距离法实现对学生在某类题型的编程能力的评分
+		\item main.py
+		\par 将计算题目难度的四维数据进行降维处理，处理中间数据
+	\end{enumerate}
 	
 	
 	\section{案例分析}\label{sec4}
-	
+	我们随机抽取id为60606的学生分析。
+	首先我们将该学生所答的题目分为树结构、图结构、数字操作、排序算法、查找算法、字符串、数组、线性表等八个大类，并对每一类的题目难度系数与该学生的最终得分相乘求和，得到该学生在某一类题目的得分情况。另一方面，我们通过对该学生所提交的代码进行规范性、正确性等分析后，粗略的得到他的代码所属等级。最后根据这两个维度，采用TOPSIS以3:2的权重j计算学生的编程能力。
+	以下是该学生各类题目编程能力对比。
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=0.35\textwidth]{Figure_4.png}\\
+		\caption{id为60606的学生的编程能力分析图}
+	\end{figure}
 	
 	\section{反思和总结}\label{sec5}
 	下面对本次研究做一次反思和总结，并对未来工作做一定的展望。
-	\par 本次研究我们选“评价学生编程能力”为题，采用PCA、TOPSIS等数据处理方法，使用pandas、numpy、Sklearn等工具，针对试题难度、学生代码书写能力、学生编程能力做了一个调查和分析。在实践过程中，我们的数据处理能力、数据分析能力、算法知识的应用能力、任务整体把控和分配能力、沟通和清晰表述能力都得到了显著的提高。\\
+	\par 本次研究我们选“评价学生编程能力”为题，采用PCA、TOPSIS等数据处理方法，使用pandas、numpy、Sklearn等工具，针对试题难度、学生代码书写能力、学生编程能力做了一个调查和分析。在实践过程中，我们的数据处理能力、数据分析能力、算法知识的应用能力、任务整体把控和分配能力、沟通和清晰表述能力都得到了显著的提高。
 	\par 但我们的数据分析还存在着一些不足，如学生代码书写能力的分级较为模糊、PCA维度的选取，这些问题我们都将在日后的学习中不断完善，从而使我们能够在问题的解决中不断进步。
 	
 	%===================================== 参考文献  ==========================================
@@ -252,27 +282,34 @@
 		\section{附录1} 
 		\lstinputlisting[
 		style       =   Python,
-		caption     =   {\bf 主函数(PCA)},
+		caption     =   {\bf main.py},
 		label       =   {main.py}
 		]{../../main.py}
 		\section{附录2} 
 		\lstinputlisting[
 		style       =   Python,
-		caption     =   {\bf TOPSIS},
+		caption     =   {\bf TOPSIS.py},
 		label       =   {TOPSIS.py}
 		]{../../TOPSIS.py}
 		\section{附录3} 
 		\lstinputlisting[
 		style       =   Python,
-		caption     =   {\bf 获取数据},
+		caption     =   {\bf getQuestions.py},
 		label       =   {getQuestions.py}
 		]{../../getQuestions.py}
-		\section{附录4} 
+
+			\section{附录4} 
 		\lstinputlisting[
 		style       =   Python,
-		caption     =   {\bf 代码内容分析},
-		label       =   {codeAnalysis.py}
-		]{../../getQuestions.py}
+		caption     =   {\bf Download.py},
+		label       =   {Download.py}
+		]{../../download/Download.py}
+			\section{附录5} 
+		\lstinputlisting[
+		style       =   Python,
+		caption     =   {\bf RadarChart.py},
+		label       =   {RadarChart.py}
+		]{../../RadarChart.py}
 	\end{appendices}
 	
 \end{document}
