@@ -15,8 +15,8 @@ def get_questions(data):
             debugTimes = 0
             if uploadTimes > 1:
                 debugEffect = (question.get('final_score') - upload_records[0].get("score")) * 60 * 1000 / \
-                              (upload_records[uploadTimes - 1].get("upload_time") - upload_records[0].get(
-                                  "upload_time"))
+                              (upload_records[uploadTimes - 1].get("upload_time") -
+                               upload_records[0].get("upload_time"))
                 debugTimes = 1
             if question.get("final_score") == 100:
                 ACCount = 1
@@ -54,7 +54,7 @@ def get_questions(data):
                 100 / temp[1],  # 1 / 提交次数
                 temp[2] / temp[0],  # 最终得分的平均分
                 temp[5] / temp[1],  # 每次提交的平均分
-                temp[7] / temp[6]  # 平均每个人的debug成效
+                # temp[7] / temp[6]  # 平均每个人的debug成效
             ]
         except ZeroDivisionError:
             print(key)
