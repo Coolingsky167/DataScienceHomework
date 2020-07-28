@@ -2,8 +2,13 @@ import os
 import json
 
 
-# 对解压缩出来的文件名进行处理,去掉其中的' ',方便后续pylint处理
+
 def name_filter(data):
+    """
+    对解压缩出来的文件名进行处理,去掉其中的' ',方便后续pylint处理(pylint不能处理路径中带有空格的py文件)
+    :param data:
+    :return:
+    """
     for key in data.keys():
         cases = data[key]["cases"]
         for i in range(len(cases)):

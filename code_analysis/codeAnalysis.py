@@ -32,6 +32,11 @@ def pylint_code(code):
 
 
 def extract_code_features(code: Dict):
+    """
+    获取每个学生的3个代码特征的值:平均代码规范得分，平均if-elif-else&字面常量出现的次数，提交的代码中非python代码所占的比例
+    :param code:经get_code_path方法解析过的字典
+    :return:
+    """
     code_score = {}
     for key1 in code.keys():
         pylint_scores = []
@@ -76,7 +81,7 @@ def get_pylint_score(path: AnyStr):
             return 20
 
 
-# 统计代码中if,elif,else,字面常量的数量
+# 统计代码中if,elif,else,字面常量的字符数量
 def get_code_count(path: AnyStr):
     cur_code = open(path, 'r', encoding='utf-8')
     count = 0
@@ -88,12 +93,13 @@ def get_code_count(path: AnyStr):
     return count
 
 
+# 执行get_code_path方法获取代码路径，执行pylint_code方法检测代码规范性，执行extract_code_features方法获得数据
 if __name__ == '__main__':
     # fp = open('sample_downloaded.json', 'r', encoding='UTF-8')
     fp = open('../test_data_downloaded.json', 'r', encoding='UTF-8')
     data = json.load(fp)
     code = get_code_path(data)
-    # pylint_code(code)
+    pylint_code(code)
     code_features = extract_code_features(code)
     code_features = json.dumps(code_features, indent=4)
     with open('code_features.json', 'w', encoding='UTF-8') as f:

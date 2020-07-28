@@ -6,6 +6,11 @@ import json
 
 
 def get_score():
+    """
+    采用KMeans算法进行聚类分析，将具有相似代码特征的学生分为一类，多次执行该方法直到获取到一种合理度较高的分类并将结果写入
+    code_scores.json文件中
+    :return:
+    """
     fp = open('code_features.json', 'r', encoding='UTF-8')
     code_features = json.load(fp)
     X = pd.DataFrame(code_features).T
@@ -29,6 +34,7 @@ def get_score():
         f.write('\n\n\n\n')
 
 
+# 赋予分析出的结果:3种类别以实际意义,使类别号和代码质量挂钩
 def authorize():
     fp = open('code_scores.json', 'r', encoding='UTF-8')
     data = json.load(fp)

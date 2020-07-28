@@ -5,8 +5,13 @@ import os
 import zipfile
 
 
-# 将下载的文件放在root目录下,同时修改各个代码的url为本地资源,并将修改后的数据写入对应的_downloaded.json文件
 def download(data, root):
+    """
+    将下载下来的文件放在root目录下,同时修改各个代码的url为本地资源（下载下来保存的位置）,并将修改后的数据写入对应的_downloaded.json文件
+    :param data:由sample.json或者test_data.json转换而来的字典，包含要下载的文件的url
+    :param root:下载下来的资源要保存的根目录
+    :return:None
+    """
     if not os.path.isdir(root):
         os.mkdir(root)
     for key in data.keys():
