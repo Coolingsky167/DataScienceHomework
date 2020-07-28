@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 def getRadar(data):
     plt.rcParams['font.sans-serif'] = ['SimHei']
-    name = ['图结构', '树结构', '数字操作', '排序算法', '查找算法', '字符串', '数组', '线性表']  # 标签
+    name = ["字符串", "线性表", "数组", "查找算法", "数字操作", "图结构", "树结构", "排序算法"]  # 标签
     theta = np.linspace(0, 2 * np.pi, len(name), endpoint=False)  # 将圆根据标签的个数等比分
     value = data
     theta = np.concatenate((theta, [theta[0]]))  # 闭合
