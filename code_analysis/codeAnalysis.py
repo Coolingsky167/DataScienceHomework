@@ -18,10 +18,7 @@ def get_code_path(data):
 # 利用pylint分析代码规范程度,并输出到代码下面的pylint_result.txt文件中
 def pylint_code(code):
     for key1 in code.keys():
-        count = 0
         for key2 in code[key1].keys():
-            if count >= 100:
-                break
             base_path = code[key1][key2]
             base_path = '..\\'+base_path
             if not os.path.exists(base_path+'pylint_result.txt'):
@@ -29,7 +26,6 @@ def pylint_code(code):
                 f = open(base_path + 'pylint_result.txt', 'w')
                 pylint.epylint.py_run(base_path + 'answer.py', return_std=True, stdout=f, stderr=f)
                 f.close()
-            count += 1
             # if os.path.exists(base_path + 'pylint_result.txt'):
             #     print('      ' + key2)
             #     os.remove(base_path + 'pylint_result.txt')
@@ -100,8 +96,8 @@ if __name__ == '__main__':
     # pylint_code(code)
     code_features = extract_code_features(code)
     code_features = json.dumps(code_features, indent=4)
-    with open('code_features.json', 'a', encoding='UTF-8') as f:
+    with open('code_features.json', 'w', encoding='UTF-8') as f:
         f.write(code_features)
-        f.write('\n\n\n\n\n')
+        # f.write('\n\n\n\n\n')
 
 

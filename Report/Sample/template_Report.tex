@@ -236,17 +236,23 @@
 	\section{案例分析}\label{sec4}
 	
 	
-	\section{意见和建议}\label{sec5}
-	
+	\section{反思和总结}\label{sec5}
+	下面对本次研究做一次反思和总结，并对未来工作做一定的展望。
+	\par 本次研究我们选“评价学生编程能力”为题，采用PCA、TOPSIS等数据处理方法，使用pandas、numpy、Sklearn等工具，针对试题难度、学生代码书写能力、学生编程能力做了一个调查和分析。在实践过程中，我们的数据处理能力、数据分析能力、算法知识的应用能力、任务整体把控和分配能力、沟通和清晰表述能力都得到了显著的提高。\\
+	\par 但我们的数据分析还存在着一些不足，如学生代码书写能力的分级较为模糊、PCA维度的选取，这些问题我们都将在日后的学习中不断完善，从而使我们能够在问题的解决中不断进步。
 	
 	%===================================== 参考文献  ==========================================
 	\section{参考文献}\label{sec:sec4}
-	
+	\small
+	\begin{thebibliography}{1}
+		\bibitem{1} Shih H S, Shyur H J, Lee E S. An extension of TOPSIS for group decision making[J]. Mathematical \& Computer Modelling, 2007, 45(7):801-813.
+		\bibitem{2} A tutorial on Principal Components Analysis LI Smith – 2002
+	\end{thebibliography}
 	\begin{appendices} 
 		\section{附录1} 
 		\lstinputlisting[
 		style       =   Python,
-		caption     =   {\bf 主函数},
+		caption     =   {\bf 主函数(PCA)},
 		label       =   {main.py}
 		]{../../main.py}
 		\section{附录2} 
@@ -259,8 +265,14 @@
 		\lstinputlisting[
 		style       =   Python,
 		caption     =   {\bf 获取数据},
-		label       =   {.py}
-		]{../../main.py}
+		label       =   {getQuestions.py}
+		]{../../getQuestions.py}
+		\section{附录4} 
+		\lstinputlisting[
+		style       =   Python,
+		caption     =   {\bf 代码内容分析},
+		label       =   {codeAnalysis.py}
+		]{../../getQuestions.py}
 	\end{appendices}
 	
 \end{document}
