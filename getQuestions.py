@@ -24,17 +24,17 @@ def get_questions(data):
                     or (uploadTimes == 0 and ACCount == 1):
                 firstACCount = 1
 
-            if question.get("case_id") in questions:
-                questions[question.get("case_id")][0] += 1
-                questions[question.get("case_id")][1] += len(question.get("upload_records"))
-                questions[question.get("case_id")][2] += question.get("final_score")
-                questions[question.get("case_id")][3] += ACCount
-                questions[question.get("case_id")][4] += firstACCount
-                questions[question.get("case_id")][5] += totalScore
-                questions[question.get("case_id")][6] += debugTimes
-                questions[question.get("case_id")][7] += debugEffect
+            if (question.get("case_id"), question.get("case_type")) in questions.keys():
+                questions[(question.get("case_id"), question.get("case_type"))][0] += 1
+                questions[(question.get("case_id"), question.get("case_type"))][1] += len(question.get("upload_records"))
+                questions[(question.get("case_id"), question.get("case_type"))][2] += question.get("final_score")
+                questions[(question.get("case_id"), question.get("case_type"))][3] += ACCount
+                questions[(question.get("case_id"), question.get("case_type"))][4] += firstACCount
+                questions[(question.get("case_id"), question.get("case_type"))][5] += totalScore
+                questions[(question.get("case_id"), question.get("case_type"))][6] += debugTimes
+                questions[(question.get("case_id"), question.get("case_type"))][7] += debugEffect
             else:
-                questions[question.get("case_id")] = [
+                questions[(question.get("case_id"), question.get("case_type"))] = [
                     1,
                     uploadTimes,
                     question.get("final_score"),

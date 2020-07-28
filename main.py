@@ -45,4 +45,5 @@ for x in X_reduction:
 #     sqSum += item ** 2
 # temp = np.array([x / np.sqrt(sqSum) for x in temp])
 temp = [(x - min(temp)) / (max(temp) - min(temp)) * 100 for x in temp]
-ans = np.column_stack((keys, X_reduction, temp))
+ans = np.column_stack((keys, temp))
+var = pd.DataFrame(sorted(ans, key=lambda x: int(x[0])))
