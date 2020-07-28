@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.26)  28 JUL 2020 12:33
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.7.26)  28 JUL 2020 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -638,7 +638,11 @@ Package: xeCJK-listings 2020/02/18 v3.8.2 xeCJK patch file for listings
 \l__xeCJK_listings_max_char_int=\count317
 \l__xeCJK_listings_flag_int=\count318
 )
-(./template_Report.aux)
+(./template_Report.aux
+
+LaTeX Warning: Label `main.py' multiply defined.
+
+)
 \openout1 = `template_Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
@@ -837,8 +841,8 @@ n(0)/m/n/10.53937 。|
 
 File: Figures/Figure_1.png Graphic file (type bmp)
 <Figures/Figure_1.png>
-[3]
-Overfull \hbox (41.96097pt too wide) detected at line 193
+[3] [4]
+Overfull \hbox (41.96097pt too wide) detected at line 209
 []\OML/cmm/b/it/10.53937 Z[] \OT1/cmr/m/n/10.53937 = (\OML/cmm/b/it/10.53937 ma
 x\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/
 n/10.53937 g\OML/cmm/m/it/10.53937 ; \OML/cmm/b/it/10.53937 max\OMS/cmsy/m/n/10
@@ -848,8 +852,8 @@ L/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/n/10.53937 g\OT1/cmr/m/n/10.
 53937 ) = (\OML/cmm/m/it/10.53937 Z[]; Z[]; []  ; Z[]\OT1/cmr/m/n/10.53937 )
  []
 
-[4]
-Overfull \hbox (36.73285pt too wide) detected at line 197
+
+Overfull \hbox (36.73285pt too wide) detected at line 213
 []\OML/cmm/b/it/10.53937 Z[] \OT1/cmr/m/n/10.53937 = (\OML/cmm/b/it/10.53937 mi
 n\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/
 n/10.53937 g\OML/cmm/m/it/10.53937 ; \OML/cmm/b/it/10.53937 min\OMS/cmsy/m/n/10
@@ -859,11 +863,11 @@ L/cmm/m/it/10.53937 z[]; z[]; []  ; z[]\OMS/cmsy/m/n/10.53937 g\OT1/cmr/m/n/10.
 53937 ) = (\OML/cmm/m/it/10.53937 Z[]; Z[]; []  ; Z[]\OT1/cmr/m/n/10.53937 )
  []
 
-(d:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+[5] (d:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [5]
+)
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 235.
+nput line 251.
 
 Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
 (fontspec)             doesn't exist).
@@ -887,29 +891,32 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
- (../../main.py [6])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
+ (../../main.py [6]) [7] (../../TOPSIS.py [8]) (../../main.py [9])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 266.
+ [10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 266.
  (./template_Report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 239.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 266.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 266.
 Package rerunfilecheck Info: File `template_Report.out' has not changed.
-(rerunfilecheck)             Checksum: ACCA427BCD4CA66CFFF29EB649FA556C;1589.
+(rerunfilecheck)             Checksum: F2BA1CE48346DD4DE59CF41EF2A6860D;1725.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 266.
  ) 
 Here is how much of TeX's memory you used:
- 19085 strings out of 479418
- 385818 string characters out of 5888105
- 957660 words of memory out of 5000000
- 36261 multiletter control sequences out of 15000+600000
- 545755 words of font info for 115 fonts, out of 8000000 for 9000
+ 19120 strings out of 479418
+ 386270 string characters out of 5888105
+ 1032835 words of memory out of 5000000
+ 36290 multiletter control sequences out of 15000+600000
+ 545763 words of font info for 116 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 56i,12n,68p,829b,2108s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,12n,68p,829b,2104s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on template_Report.pdf (7 pages).
+Output written on template_Report.pdf (10 pages).
