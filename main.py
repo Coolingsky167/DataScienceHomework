@@ -119,11 +119,12 @@ ansTree = pd.DataFrame(problemTree).T
 ansTree = topsis(ansTree, [0.8, 0.2])
 ansSort = pd.DataFrame(problemSort).T
 ansSort = topsis(ansSort, [0.8, 0.2])
-getRadar([ansString.loc["60606", "综合得分指数"] * 100,
-          ansLinkedList.loc["60606", "综合得分指数"] * 100,
-          ansArray.loc["60606", "综合得分指数"] * 100,
-          ansSearch.loc["60606", "综合得分指数"] * 100,
-          ansNumeric.loc["60606", "综合得分指数"] * 100,
-          ansGraph.loc["60606", "综合得分指数"] * 100,
-          ansTree.loc["60606", "综合得分指数"] * 100,
-          ansSort.loc["60606", "综合得分指数"] * 100])
+s="60581"
+getRadar([ansString.loc[s, "综合得分指数"] * 100,
+          ansLinkedList.loc[s, "综合得分指数"] * 100,
+          ansArray.loc[s, "综合得分指数"] * 100,
+          ansSearch.loc[s, "综合得分指数"] * 100,
+          ansNumeric.loc[s, "综合得分指数"] * 100,
+          ansGraph.loc[s, "综合得分指数"] * 100,
+          ansTree.loc[s, "综合得分指数"] * 100,
+          ansSort.loc[s, "综合得分指数"] * 100])
